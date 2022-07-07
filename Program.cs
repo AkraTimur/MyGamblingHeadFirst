@@ -6,47 +6,7 @@ namespace MyGamblingHeadFirst
     {
         public string Name;
         public int Cash;    // в полях хранятся имя парня и сумма денег у него в кармане
-
-        static void Main(string[] args)
-        {
-            Random random = new Random();
-            double odds = 0.75;
-            Player player = new Player() { Name = "The player", Cash = 100 };
-            Console.WriteLine("Welcome to the casino. The odds ara " + odds);
-            while (player.Cash>0)
-            {
-                player.WriteMyInfo();
-                Console.Write("How much do you want to bed: ");
-                string howMuch = Console.ReadLine();
-                if(int.TryParse(howMuch, out int amount))
-                {
-                    int pot = player.GiveCash(amount*2);
-                    
-                    if (pot > 0)
-                    {
-                        if (random.NextDouble() > odds)
-                        {
-                            int winnings = pot; 
-                            player.ReceiveCash(winnings);
-                            Console.WriteLine("You win " + pot);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Bad luck, you lose");
-                            player.GiveCash(amount);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine(" Please enter a valid number");
-                    }
-                    
-                    
-                }
-            }
-            Console.WriteLine("The house always wins.");
-        }
-        /// <summary>
+         /// <summary>
         /// Выводит значение моих полей Name и Cash на консоль.
         /// </summary>
         public void WriteMyInfo()
@@ -95,3 +55,44 @@ namespace MyGamblingHeadFirst
         // это делается для того, чтобы нельзя было вызвать метод получения денег с отрицательным значением, что привело бы к потере средств.
     }
 }
+
+        static void Main(string[] args)
+        {
+            Random random = new Random();
+            double odds = 0.75;
+            Player player = new Player() { Name = "The player", Cash = 100 };
+            Console.WriteLine("Welcome to the casino. The odds ara " + odds);
+            while (player.Cash>0)
+            {
+                player.WriteMyInfo();
+                Console.Write("How much do you want to bed: ");
+                string howMuch = Console.ReadLine();
+                if(int.TryParse(howMuch, out int amount))
+                {
+                    int pot = player.GiveCash(amount*2);
+                    
+                    if (pot > 0)
+                    {
+                        if (random.NextDouble() > odds)
+                        {
+                            int winnings = pot; 
+                            player.ReceiveCash(winnings);
+                            Console.WriteLine("You win " + pot);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Bad luck, you lose");
+                            player.GiveCash(amount);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Please enter a valid number");
+                    }
+                    
+                    
+                }
+            }
+            Console.WriteLine("The house always wins.");
+        }
+       
